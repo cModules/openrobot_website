@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/components/toast.tsx","./src/lib/datamanager.ts","./src/lib/usedata.ts","./src/pages/admindashboard.tsx","./src/pages/admindownloads.tsx","./src/pages/adminlayout.tsx","./src/pages/adminproducts.tsx","./src/pages/adminsettings.tsx"],"version":"5.8.3"}
