@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Check, ArrowRight, Bot, Eye, Hand, Zap, Cpu, Box, Users, GraduationCap, Headphones, Globe, TrendingUp, ShieldCheck } from "lucide-react";
