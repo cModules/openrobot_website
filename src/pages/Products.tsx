@@ -18,7 +18,7 @@ export default function Products() {
               产品系列
             </h1>
             <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-              高性能工业机器人、视觉传感器、夹爪等完整解决方案
+              智能工业机器人、视觉传感器、夹爪等完整解决方案
             </p>
           </div>
 

@@ -38,7 +38,7 @@ export interface Documentation {
   icon: string;
 }
 
-// 初始产品数据 - OpenRoboOLP 硬件产品
+// 初始产品数据 - OpenRobot 硬件产品
 export const initialProducts: ProductCategory[] = [
   {
     id: 'cat-1',
@@ -113,7 +113,7 @@ export const initialDownloads: DownloadItem[] = [
   {
     id: 'dl-1',
     title: 'OpenRoboOLP',
-    description: '高性能工业机器人离线编程软件，支持多品牌机器人后处理',
+    description: '智能工业机器人离线编程软件，支持多品牌机器人后处理',
     icon: 'Code',
     platforms: [
       { name: 'Windows', icon: 'Monitor', link: '#' },
