@@ -1,4 +1,4 @@
-import { Cpu, Github, Twitter, Linkedin } from "lucide-react";
+import { Github, Twitter, Linkedin } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -7,7 +7,11 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <Cpu className="w-6 h-6 text-accent-500" />
+              <img
+                src="/robot-logo.png"
+                alt="OpenRobot Logo"
+                className="w-6 h-6 object-contain"
+              />
               <span className="text-xl font-display font-bold text-white">
                 OpenRobot
               </span>
