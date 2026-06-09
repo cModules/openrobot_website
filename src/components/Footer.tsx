@@ -13,7 +13,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed max-w-md">
-              开源工业机器人离线编程软件，为机器人工程师、研究人员和制造商提供免费、可扩展的商业 OLP 工具替代方案。
+              高性能工业机器人离线编程软件，为机器人工程师、研究人员和制造商提供免费、可扩展的商业 OLP 工具替代方案。
             </p>
             <div className="flex gap-4 mt-4">
               <a href="#" className="text-slate-400 hover:text-accent-400 transition-colors">

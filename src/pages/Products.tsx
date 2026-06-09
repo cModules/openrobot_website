@@ -91,9 +91,9 @@ export default function Products() {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-slate-900 border border-slate-800 rounded-xl p-8">
               <Zap className="w-12 h-12 text-accent-500 mb-6" />
-              <h3 className="text-xl font-semibold text-white mb-3">开源开放</h3>
+              <h3 className="text-xl font-semibold text-white mb-3">免费使用</h3>
               <p className="text-slate-400">
-                Apache 2.0 许可证，完全开源的算法和代码，透明可审计
+                永久免费使用，无功能限制，无订阅费用
               </p>
             </div>
             <div className="bg-slate-900 border border-slate-800 rounded-xl p-8">

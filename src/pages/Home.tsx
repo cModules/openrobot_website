@@ -61,10 +61,10 @@ export default function Home() {
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent-950/50 border border-accent-800 rounded-full text-accent-400 text-sm mb-8">
               <span className="w-2 h-2 bg-accent-500 rounded-full animate-pulse" />
-              开源 · 免费 · 工业级
+              免费 · 专业 · 工业级
             </div>
             <h1 className="text-5xl md:text-7xl font-display font-bold text-white mb-6 leading-tight">
-              开源工业机器人
+              高性能工业机器人
               <span className="bg-gradient-to-r from-accent-400 via-primary-500 to-accent-400 bg-clip-text text-transparent">
                 {" "}离线编程软件
               </span>

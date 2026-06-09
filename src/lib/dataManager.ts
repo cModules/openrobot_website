@@ -113,7 +113,7 @@ export const initialDownloads: DownloadItem[] = [
   {
     id: 'dl-1',
     title: 'OpenRoboOLP',
-    description: '开源工业机器人离线编程软件，支持多品牌机器人后处理',
+    description: '高性能工业机器人离线编程软件，支持多品牌机器人后处理',
     icon: 'Code',
     platforms: [
       { name: 'Windows', icon: 'Monitor', link: '#' },
