@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Cpu, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
 export default function Navbar() {
@@ -19,7 +19,11 @@ export default function Navbar() {
       <div className="container mx-auto">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center gap-2">
-            <Cpu className="w-8 h-8 text-accent-500" />
+            <img
+              src="/robot-logo.png"
+              alt="OpenRoboOLP Logo"
+              className="w-8 h-8 object-contain"
+            />
             <span className="text-2xl font-display font-bold bg-gradient-to-r from-accent-400 to-primary-500 bg-clip-text text-transparent">
               OpenRoboOLP
             </span>
