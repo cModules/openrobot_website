@@ -69,9 +69,12 @@ export default function Home() {
                 {" "}离线编程软件
               </span>
             </h1>
-            <p className="text-xl text-slate-400 mb-10 max-w-2xl mx-auto">
+            <p className="text-xl text-slate-400 mb-4 max-w-2xl mx-auto">
               OpenRoboOLP 是一款免费、可扩展且由社区驱动的商业 OLP 工具替代品，
               可替代 RoboDK、Robotmaster 和 Delmia。
+            </p>
+            <p className="text-2xl font-light text-accent-300 mb-10 max-w-2xl mx-auto italic">
+              We Build the Factory Automation Future
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
