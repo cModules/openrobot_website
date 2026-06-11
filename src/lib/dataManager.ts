@@ -116,7 +116,7 @@ export const initialDownloads: DownloadItem[] = [
     description: '智能工业机器人离线编程软件，支持多品牌机器人后处理',
     icon: 'Code',
     platforms: [
-      { name: 'Windows', icon: 'Monitor', link: '/OpenRoboOLPv0.1.1.zip' },
+      { name: 'Windows', icon: 'Monitor', link: '/downloads/OpenRoboOLPv0.1.1.zip' },
       { name: 'Linux', icon: 'Server', link: '#' },
       { name: 'macOS', icon: 'Apple', link: '#' },
     ],
