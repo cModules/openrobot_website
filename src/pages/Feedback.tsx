@@ -15,6 +15,8 @@ export default function Feedback() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const mailtoLink = `mailto:jay.cn@outlook.com?subject=${encodeURIComponent(formData.subject || '反馈建议')}&body=${encodeURIComponent(`姓名: ${formData.name}\n邮箱: ${formData.email}\n类型: ${feedbackType === 'suggestion' ? '功能建议' : feedbackType === 'bug' ? '问题报告' : '其他'}\n\n${formData.message}`)}`;
+    window.location.href = mailtoLink;
     setSubmitted(true);
   };
 
