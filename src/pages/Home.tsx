@@ -235,11 +235,19 @@ export default function Home() {
               </div>
             </div>
             <div className="bg-slate-800 rounded-2xl p-8 border border-slate-700">
-              <div className="aspect-video bg-slate-900 rounded-xl flex items-center justify-center">
-                <div className="text-center">
-                  <Cpu className="w-16 h-16 text-accent-500 mx-auto mb-4" />
-                  <p className="text-slate-400">仿真环境预览</p>
-                </div>
+              <div className="aspect-video bg-slate-900 rounded-xl flex items-center justify-center overflow-hidden">
+                <video
+                  className="w-full h-full object-cover"
+                  src="/images/olp_demo.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                  poster="/robot-logo.png"
+                >
+                  您的浏览器不支持视频播放
+                </video>
               </div>
             </div>
           </div>
