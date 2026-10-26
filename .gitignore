@@ -12,6 +12,17 @@ dist
 dist-ssr
 *.local
 
+# TypeScript 增量构建缓存
+*.tsbuildinfo
+
+# 环境变量含飞书密钥，绝不提交
+.env
+.env.*
+!.env.example
+
+# EdgeOne 上传凭证
+scripts/blob-config.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

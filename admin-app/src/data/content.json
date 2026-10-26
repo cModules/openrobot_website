@@ -1,0 +1,158 @@
+{
+  "site": {
+    "name": "OpenRobot",
+    "logoText": "OpenRobot",
+    "email": "jay.cn@outlook.com",
+    "github": "https://github.com/cModules",
+    "wechatId": "",
+    "wechatQr": "/wechat-qrcode.jpg",
+    "footerDescription": "提供 roboWorld 机器人仿真编程软件、SO101 开源机器人套件，以及机器人自动化方案顾问服务。",
+    "address": "上海市浦东新区张江高科技园区科苑路 88 号",
+    "workTime": "周一至周五: 9:00 - 18:00",
+    "workTimeNote": "周六至周日: 休息"
+  },
+  "products": [
+    {
+      "id": "cat-software",
+      "category": "软件产品",
+      "items": [
+        {
+          "id": "prod-roboworld",
+          "name": "roboWorld",
+          "description": "机器人仿真编程软件。内置可视化仿真环境，支持轨迹规划、碰撞检测与多品牌机器人代码后处理，为商业 OLP 工具提供免费、可扩展的替代方案。",
+          "image": "/api/asset/products/roboworld/assets/main-ur5e.png",
+          "price": "免费",
+          "purchaseUrl": "",
+          "introPath": "products/roboworld/index.html",
+          "specs": [
+            "可视化仿真与轨迹规划",
+            "多品牌后处理：UR / KUKA / ABB / FANUC / 汇川",
+            "Python 脚本编程接口",
+            "支持 Windows 与 Linux"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cat-hardware",
+      "category": "开源硬件套件",
+      "items": [
+        {
+          "id": "prod-so101",
+          "name": "SO101 开源机器人套件",
+          "description": "基于开源 SO-ARM101 的 6 自由度机械臂套件，兼容 LeRobot 生态，适合具身智能研究、模仿学习与机器人入门教学。提供散件与整机两种形态。",
+          "image": "/api/asset/products/so-arm101/assets/product.jpg",
+          "price": "见闲鱼",
+          "purchaseUrl": "",
+          "introPath": "products/so-arm101/index.html",
+          "specs": [
+            "6 自由度，舵机驱动",
+            "兼容 LeRobot / ROS 2 生态",
+            "提供装配图纸、BOM 清单与源码",
+            "支持遥操作数据采集"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cat-service",
+      "category": "服务",
+      "items": [
+        {
+          "id": "prod-consulting",
+          "name": "方案顾问",
+          "description": "面向机器人自动化项目的选型与方案咨询服务。从需求梳理到仿真验证，帮你在采购硬件之前先把方案跑通，少走弯路。",
+          "image": "",
+          "price": "面议",
+          "purchaseUrl": "",
+          "specs": [
+            "需求梳理与可行性评估",
+            "机器人选型与产线布局建议",
+            "仿真验证与节拍分析",
+            "项目落地陪跑与技术答疑"
+          ]
+        }
+      ]
+    }
+  ],
+  "downloads": [
+    {
+      "id": "dl-1",
+      "title": "roboWorld 软件",
+      "description": "机器人仿真编程软件安装包（Windows），托管在 GitHub Releases，无需提取码",
+      "icon": "Code",
+      "version": "v0.1.40",
+      "date": "2026-10-27",
+      "platforms": [
+        {
+          "name": "Windows 安装包",
+          "icon": "Monitor",
+          "link": "https://github.com/cModules/openrobot_website/releases/latest",
+          "code": ""
+        }
+      ]
+    },
+    {
+      "id": "dl-2",
+      "title": "Python API 与示例代码",
+      "description": "roboWorld 的 Python 编程接口与示例工程，源码托管在 GitHub",
+      "icon": "Terminal",
+      "version": "v0.1.0",
+      "date": "2024-01-15",
+      "platforms": [
+        {
+          "name": "GitHub",
+          "icon": "Code",
+          "link": "https://github.com/cModules",
+          "code": ""
+        }
+      ]
+    },
+    {
+      "id": "dl-3",
+      "title": "文档与入门资料",
+      "description": "快速上手指南、API 参考与后处理器开发文档",
+      "icon": "FileText",
+      "version": "-",
+      "date": "2024-01-15",
+      "platforms": [
+        {
+          "name": "联系获取",
+          "icon": "Mail",
+          "link": "",
+          "code": ""
+        }
+      ]
+    }
+  ],
+  "documentation": [
+    {
+      "id": "doc-1",
+      "title": "快速入门",
+      "description": "5 分钟上手指南",
+      "icon": "BookOpen",
+      "link": "https://github.com/cModules"
+    },
+    {
+      "id": "doc-2",
+      "title": "API 参考",
+      "description": "完整的函数和类说明",
+      "icon": "Code",
+      "link": "https://github.com/cModules"
+    },
+    {
+      "id": "doc-3",
+      "title": "后处理器开发指南",
+      "description": "添加新机器人品牌的教程",
+      "icon": "FileText",
+      "link": "https://github.com/cModules"
+    },
+    {
+      "id": "doc-4",
+      "title": "硬件规格",
+      "description": "支持的机器人型号和规格",
+      "icon": "Terminal",
+      "link": "https://github.com/cModules"
+    }
+  ]
+}

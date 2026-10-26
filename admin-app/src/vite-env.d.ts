@@ -1,0 +1,14 @@
+/// <reference types="vite/client" />
+
+interface ImportMetaEnv {
+  readonly VITE_GITHUB_OWNER: string;
+  readonly VITE_GITHUB_REPO: string;
+  readonly VITE_GITHUB_BRANCH: string;
+  readonly VITE_CONTENT_PATH: string;
+  readonly VITE_ADMIN_PASSWORD: string;
+  readonly VITE_SITE_API_BASE: string;
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+}

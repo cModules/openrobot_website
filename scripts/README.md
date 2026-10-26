@@ -155,7 +155,7 @@ $config = @{
 
 ```json
 {
-  "projectId": "pages-tw7pugxaldlj",
+  "projectId": "pages-xxxxxxxx",
   "token": "your-api-token-here"
 }
 ```

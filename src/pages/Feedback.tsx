@@ -1,30 +1,87 @@
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Send, Check, MessageSquare, AlertCircle, Lightbulb, Bug } from "lucide-react";
+import {
+  Send,
+  Check,
+  MessageSquare,
+  AlertCircle,
+  Lightbulb,
+  Bug,
+  Loader2,
+} from "lucide-react";
+
+const TYPE_LABEL = {
+  suggestion: "功能建议",
+  bug: "问题报告",
+  other: "其他",
+} as const;
+
+const inputClass =
+  "w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder:text-slate-500 focus:outline-none focus:border-accent-500 transition-all";
 
 export default function Feedback() {
-  const [feedbackType, setFeedbackType] = useState<"suggestion" | "bug" | "other">("suggestion");
+  const [feedbackType, setFeedbackType] =
+    useState<keyof typeof TYPE_LABEL>("suggestion");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     subject: "",
     message: "",
+    website: "", // 蜜罐字段，真人看不到
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const mailtoLink = `mailto:jay.cn@outlook.com?subject=${encodeURIComponent(formData.subject || '反馈建议')}&body=${encodeURIComponent(`姓名: ${formData.name}\n邮箱: ${formData.email}\n类型: ${feedbackType === 'suggestion' ? '功能建议' : feedbackType === 'bug' ? '问题报告' : '其他'}\n\n${formData.message}`)}`;
-    window.location.href = mailtoLink;
-    setSubmitted(true);
+    setError("");
+
+    if (!formData.subject.trim()) {
+      setError("请填写主题");
+      return;
+    }
+    if (!formData.message.trim()) {
+      setError("请填写详细描述");
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, type: TYPE_LABEL[feedbackType] }),
+      });
+
+      const data = await res.json().catch(() => null);
+
+      if (!res.ok || !data?.ok) {
+        throw new Error(data?.error || "提交失败，请稍后重试或直接微信联系");
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "提交失败，请稍后重试");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const resetForm = () => {
+    setSubmitted(false);
+    setFeedbackType("suggestion");
+    setFormData({ name: "", email: "", subject: "", message: "", website: "" });
   };
 
   return (
@@ -56,10 +113,8 @@ export default function Feedback() {
                     我们已收到您的反馈，会尽快处理并回复。
                   </p>
                   <button
-                    onClick={() => {
-                      setSubmitted(false);
-                      setFormData({ name: "", email: "", subject: "", message: "" });
-                    }}
+                    type="button"
+                    onClick={resetForm}
                     className="px-6 py-3 bg-primary-600 hover:bg-primary-500 text-white font-semibold rounded-lg transition-all"
                   >
                     返回
@@ -121,7 +176,7 @@ export default function Feedback() {
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-accent-500 transition-all"
+                        className={inputClass}
                         placeholder="您的姓名"
                       />
                     </div>
@@ -134,7 +189,7 @@ export default function Feedback() {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-accent-500 transition-all"
+                        className={inputClass}
                         placeholder="your@email.com"
                       />
                     </div>
@@ -149,7 +204,7 @@ export default function Feedback() {
                       name="subject"
                       value={formData.subject}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-accent-500 transition-all"
+                      className={inputClass}
                       placeholder="简要描述您的问题或建议"
                     />
                   </div>
@@ -163,17 +218,46 @@ export default function Feedback() {
                       value={formData.message}
                       onChange={handleChange}
                       rows={6}
-                      className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-accent-500 transition-all resize-none"
+                      className={`${inputClass} resize-none`}
                       placeholder="请详细描述您遇到的问题或建议..."
                     />
                   </div>
 
+                  {/* 蜜罐：正常用户看不见，只有自动脚本会填 */}
+                  <input
+                    type="text"
+                    name="website"
+                    value={formData.website}
+                    onChange={handleChange}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    className="hidden"
+                  />
+
+                  {error ? (
+                    <div className="mb-6 px-4 py-3 bg-red-900/30 border border-red-700/50 rounded-lg text-red-200 text-sm flex items-start gap-2">
+                      <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                      <span>{error}</span>
+                    </div>
+                  ) : null}
+
                   <button
                     type="submit"
-                    className="w-full px-8 py-4 bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-500 hover:to-accent-500 text-white font-semibold rounded-lg transition-all flex items-center justify-center gap-2"
+                    disabled={submitting}
+                    className="w-full px-8 py-4 bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-500 hover:to-accent-500 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold rounded-lg transition-all flex items-center justify-center gap-2"
                   >
-                    <Send className="w-5 h-5" />
-                    提交反馈
+                    {submitting ? (
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                        提交中…
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-5 h-5" />
+                        提交反馈
+                      </>
+                    )}
                   </button>
                 </form>
               )}

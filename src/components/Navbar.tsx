@@ -1,18 +1,39 @@
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { siteInfo } from "@/lib/dataManager";
+import { useContact } from "@/lib/contact";
+
+const navLinks = [
+  { path: "/", label: "首页" },
+  { path: "/products", label: "产品" },
+  { path: "/download", label: "下载" },
+  { path: "/feedback", label: "反馈" },
+];
+
+const linkClass =
+  "text-sm font-medium transition-colors hover:text-accent-400 text-slate-300";
+
+function ContactEntry({ onClick }: { onClick?: () => void }) {
+  const { open } = useContact();
+
+  return (
+    <button
+      type="button"
+      onClick={() => {
+        open("wechat");
+        onClick?.();
+      }}
+      className={linkClass}
+    >
+      联系
+    </button>
+  );
+}
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
-
-  const navLinks = [
-    { path: "/", label: "首页" },
-    { path: "/products", label: "产品" },
-    { path: "/download", label: "下载" },
-    { path: "/feedback", label: "反馈" },
-    { path: "/contact", label: "联系" },
-  ];
 
   return (
     <nav className="bg-slate-900/95 backdrop-blur-md sticky top-0 z-50 border-b border-slate-800">
@@ -21,11 +42,11 @@ export default function Navbar() {
           <Link to="/" className="flex items-center gap-2">
             <img
               src="/robot-logo.png"
-              alt="OpenRobot Logo"
+              alt={`${siteInfo.name} Logo`}
               className="w-8 h-8 object-contain"
             />
             <span className="text-2xl font-display font-bold bg-gradient-to-r from-accent-400 to-primary-500 bg-clip-text text-transparent">
-              OpenRobot
+              {siteInfo.logoText}
             </span>
           </Link>
 
@@ -43,6 +64,7 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
+            <ContactEntry />
           </div>
 
           <button
@@ -55,7 +77,7 @@ export default function Navbar() {
 
         {isOpen && (
           <div className="md:hidden py-4 border-t border-slate-800">
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 items-start">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
@@ -70,6 +92,7 @@ export default function Navbar() {
                   {link.label}
                 </Link>
               ))}
+              <ContactEntry onClick={() => setIsOpen(false)} />
             </div>
           </div>
         )}

@@ -1,11 +1,13 @@
-import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Check, ArrowRight, Bot, Eye, Hand, Zap, Cpu, Box, Users, GraduationCap, Headphones, Globe, TrendingUp, ShieldCheck } from "lucide-react";
+import { Check, ArrowRight, ExternalLink, Zap, Cpu, Box, Users, ClipboardList, Compass, LineChart, FileText } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useProducts } from "@/lib/useData";
+import { useContact } from "@/lib/contact";
 
 export default function Products() {
   const { products } = useProducts();
+  const contact = useContact();
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-200">
@@ -18,16 +20,16 @@ export default function Products() {
               产品系列
             </h1>
             <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-              智能工业机器人、视觉传感器、夹爪等完整解决方案
+              仿真编程软件、开源机器人套件与方案顾问服务
             </p>
           </div>
 
           {products.map((category, catIdx) => (
             <div key={category.id} className="mb-20">
               <h2 className="text-3xl font-display font-bold text-white mb-10 flex items-center gap-3">
-                {catIdx === 0 && <Bot className="w-8 h-8 text-accent-500" />}
-                {catIdx === 1 && <Eye className="w-8 h-8 text-primary-500" />}
-                {catIdx === 2 && <Hand className="w-8 h-8 text-accent-400" />}
+                {catIdx === 0 && <Cpu className="w-8 h-8 text-accent-500" />}
+                {catIdx === 1 && <Box className="w-8 h-8 text-primary-500" />}
+                {catIdx === 2 && <Users className="w-8 h-8 text-accent-400" />}
                 {category.category}
               </h2>
               <div className="grid md:grid-cols-2 gap-8">
@@ -37,12 +39,16 @@ export default function Products() {
                     className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-primary-500/50 transition-all group"
                   >
                     <div className="md:flex">
-                      <div className="md:w-1/2 aspect-square md:aspect-auto bg-slate-800">
-                        <img
-                          src={product.image}
-                          alt={product.name}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
+                      <div className="md:w-1/2 aspect-square md:aspect-auto bg-gradient-to-br from-primary-900/40 to-accent-900/40 flex items-center justify-center">
+                        {product.image ? (
+                          <img
+                            src={product.image}
+                            alt={product.name}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                        ) : (
+                          <Box className="w-20 h-20 text-accent-400/70 group-hover:scale-110 transition-transform duration-500" />
+                        )}
                       </div>
                       <div className="md:w-1/2 p-8 flex flex-col">
                         <h3 className="text-2xl font-semibold text-white mb-2">
@@ -62,14 +68,41 @@ export default function Products() {
                             </li>
                           ))}
                         </ul>
-                        <div className="flex items-center justify-between">
+                        <div className="flex items-center justify-between gap-3 flex-wrap">
                           <span className="text-3xl font-bold text-accent-400">
                             {product.price}
                           </span>
-                          <button className="px-6 py-3 bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-500 hover:to-accent-500 text-white font-semibold rounded-lg transition-all flex items-center gap-2">
-                            立即咨询
-                            <ArrowRight className="w-4 h-4" />
-                          </button>
+                          <div className="flex items-center gap-2 flex-wrap">
+                            {product.introPath ? (
+                              <Link
+                                to={`/product/${product.id}`}
+                                className="px-5 py-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-semibold rounded-lg transition-all flex items-center gap-2"
+                              >
+                                <FileText className="w-4 h-4" />
+                                产品介绍
+                              </Link>
+                            ) : null}
+                          {product.purchaseUrl ? (
+                            <a
+                              href={product.purchaseUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="px-6 py-3 bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-500 hover:to-accent-500 text-white font-semibold rounded-lg transition-all flex items-center gap-2"
+                            >
+                              前往闲鱼购买
+                              <ExternalLink className="w-4 h-4" />
+                            </a>
+                          ) : (
+                            <button
+                              type="button"
+                              onClick={() => contact.open("wechat")}
+                              className="px-6 py-3 bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-500 hover:to-accent-500 text-white font-semibold rounded-lg transition-all flex items-center gap-2"
+                            >
+                              立即咨询
+                              <ArrowRight className="w-4 h-4" />
+                            </button>
+                          )}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -85,29 +118,29 @@ export default function Products() {
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-display font-bold text-white mb-4">
-              为什么选择 OpenRoboOLP？
+              为什么选择我们？
             </h2>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-slate-900 border border-slate-800 rounded-xl p-8">
               <Zap className="w-12 h-12 text-accent-500 mb-6" />
-              <h3 className="text-xl font-semibold text-white mb-3">免费使用</h3>
+              <h3 className="text-xl font-semibold text-white mb-3">软件免费</h3>
               <p className="text-slate-400">
-                永久免费使用，无功能限制，无订阅费用
+                roboWorld 永久免费使用，无功能限制，无订阅费用
               </p>
             </div>
             <div className="bg-slate-900 border border-slate-800 rounded-xl p-8">
               <Cpu className="w-12 h-12 text-primary-500 mb-6" />
-              <h3 className="text-xl font-semibold text-white mb-3">高性能</h3>
+              <h3 className="text-xl font-semibold text-white mb-3">开源可改</h3>
               <p className="text-slate-400">
-                基于 Pinocchio 的高性能运动学求解，支持实时仿真
+                套件基于开源 SO-ARM101 方案，图纸、BOM 与源码全部开放
               </p>
             </div>
             <div className="bg-slate-900 border border-slate-800 rounded-xl p-8">
               <Box className="w-12 h-12 text-accent-400 mb-6" />
-              <h3 className="text-xl font-semibold text-white mb-3">易扩展</h3>
+              <h3 className="text-xl font-semibold text-white mb-3">先仿真后采购</h3>
               <p className="text-slate-400">
-                模块化架构，基于 Jinja2 的后处理器，添加新品牌不到 30 分钟
+                方案顾问服务在仿真里先验证可达性与节拍，再决定买什么
               </p>
             </div>
           </div>
@@ -118,157 +151,64 @@ export default function Products() {
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold text-white mb-4">
-              我们的服务
+              方案顾问
             </h2>
             <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-              专业的技术支持与服务，助力您的机器人项目取得成功
+              面向机器人自动化项目的咨询服务，帮你在采购硬件之前先把方案跑通
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
             <div className="bg-slate-900 border border-slate-800 rounded-2xl p-8 hover:border-accent-500/50 transition-all group">
               <div className="w-16 h-16 bg-gradient-to-br from-primary-600 to-accent-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <GraduationCap className="w-8 h-8 text-white" />
+                <ClipboardList className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-2xl font-semibold text-white mb-3">技术培训</h3>
-              <p className="text-slate-400 mb-6">
-                提供专业的工业机器人离线编程培训课程，从入门到精通。
+              <h3 className="text-2xl font-semibold text-white mb-3">需求梳理</h3>
+              <p className="text-slate-400">
+                明确应用场景、工艺要求与验收指标，把模糊的想法收敛成可执行的方案边界。
               </p>
-              <ul className="space-y-3">
-                <li className="flex items-center gap-2 text-slate-300">
-                  <Check className="w-5 h-5 text-accent-500" />
-                  <span>现场培训服务</span>
-                </li>
-                <li className="flex items-center gap-2 text-slate-300">
-                  <Check className="w-5 h-5 text-accent-500" />
-                  <span>在线学习平台</span>
-                </li>
-                <li className="flex items-center gap-2 text-slate-300">
-                  <Check className="w-5 h-5 text-accent-500" />
-                  <span>定制化课程</span>
-                </li>
-              </ul>
             </div>
 
             <div className="bg-slate-900 border border-slate-800 rounded-2xl p-8 hover:border-accent-500/50 transition-all group">
               <div className="w-16 h-16 bg-gradient-to-br from-primary-600 to-accent-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Headphones className="w-8 h-8 text-white" />
+                <Compass className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-2xl font-semibold text-white mb-3">技术支持</h3>
-              <p className="text-slate-400 mb-6">
-                专业的技术支持团队，提供及时的技术咨询和解决方案。
+              <h3 className="text-2xl font-semibold text-white mb-3">选型与布局</h3>
+              <p className="text-slate-400">
+                结合负载、臂展、节拍与预算，给出机器人选型、末端执行器与产线布局建议。
               </p>
-              <ul className="space-y-3">
-                <li className="flex items-center gap-2 text-slate-300">
-                  <Check className="w-5 h-5 text-accent-500" />
-                  <span>在线技术咨询</span>
-                </li>
-                <li className="flex items-center gap-2 text-slate-300">
-                  <Check className="w-5 h-5 text-accent-500" />
-                  <span>远程调试支持</span>
-                </li>
-                <li className="flex items-center gap-2 text-slate-300">
-                  <Check className="w-5 h-5 text-accent-500" />
-                  <span>问题快速响应</span>
-                </li>
-              </ul>
             </div>
 
             <div className="bg-slate-900 border border-slate-800 rounded-2xl p-8 hover:border-accent-500/50 transition-all group">
               <div className="w-16 h-16 bg-gradient-to-br from-primary-600 to-accent-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Users className="w-8 h-8 text-white" />
+                <LineChart className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-2xl font-semibold text-white mb-3">定制开发</h3>
-              <p className="text-slate-400 mb-6">
-                根据您的需求提供定制化的软硬件解决方案。
+              <h3 className="text-2xl font-semibold text-white mb-3">仿真验证</h3>
+              <p className="text-slate-400">
+                用 roboWorld 搭建仿真环境，提前验证可达性、干涉情况与生产节拍。
               </p>
-              <ul className="space-y-3">
-                <li className="flex items-center gap-2 text-slate-300">
-                  <Check className="w-5 h-5 text-accent-500" />
-                  <span>后处理器定制</span>
-                </li>
-                <li className="flex items-center gap-2 text-slate-300">
-                  <Check className="w-5 h-5 text-accent-500" />
-                  <span>算法优化</span>
-                </li>
-                <li className="flex items-center gap-2 text-slate-300">
-                  <Check className="w-5 h-5 text-accent-500" />
-                  <span>系统集成</span>
-                </li>
-              </ul>
             </div>
+          </div>
 
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-8 hover:border-accent-500/50 transition-all group">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary-600 to-accent-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Globe className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-2xl font-semibold text-white mb-3">硬件采购</h3>
-              <p className="text-slate-400 mb-6">
-                配套的工业机器人、视觉传感器、夹爪等硬件产品供应。
-              </p>
-              <ul className="space-y-3">
-                <li className="flex items-center gap-2 text-slate-300">
-                  <Check className="w-5 h-5 text-accent-500" />
-                  <span>品牌机器人</span>
+          <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-8">
+            <h3 className="text-2xl font-display font-bold text-white mb-6">
+              合作方式
+            </h3>
+            <ol className="grid md:grid-cols-4 gap-6">
+              {[
+                "沟通需求与场景",
+                "输出方案与报价",
+                "仿真验证与评审",
+                "落地陪跑与答疑",
+              ].map((step, idx) => (
+                <li key={step} className="flex items-start gap-3">
+                  <span className="w-8 h-8 rounded-full bg-gradient-to-br from-primary-600 to-accent-600 text-white font-semibold flex items-center justify-center flex-shrink-0">
+                    {idx + 1}
+                  </span>
+                  <span className="text-slate-300 pt-1">{step}</span>
                 </li>
-                <li className="flex items-center gap-2 text-slate-300">
-                  <Check className="w-5 h-5 text-accent-500" />
-                  <span>视觉传感器</span>
-                </li>
-                <li className="flex items-center gap-2 text-slate-300">
-                  <Check className="w-5 h-5 text-accent-500" />
-                  <span>夹爪配件</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-8 hover:border-accent-500/50 transition-all group">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary-600 to-accent-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <TrendingUp className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-2xl font-semibold text-white mb-3">咨询服务</h3>
-              <p className="text-slate-400 mb-6">
-                专业的工业机器人应用咨询，帮助您规划最佳解决方案。
-              </p>
-              <ul className="space-y-3">
-                <li className="flex items-center gap-2 text-slate-300">
-                  <Check className="w-5 h-5 text-accent-500" />
-                  <span>技术方案评估</span>
-                </li>
-                <li className="flex items-center gap-2 text-slate-300">
-                  <Check className="w-5 h-5 text-accent-500" />
-                  <span>项目可行性分析</span>
-                </li>
-                <li className="flex items-center gap-2 text-slate-300">
-                  <Check className="w-5 h-5 text-accent-500" />
-                  <span>成本效益分析</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-8 hover:border-accent-500/50 transition-all group">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary-600 to-accent-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <ShieldCheck className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-2xl font-semibold text-white mb-3">维护服务</h3>
-              <p className="text-slate-400 mb-6">
-                定期的设备维护与升级服务，确保系统始终保持最佳状态。
-              </p>
-              <ul className="space-y-3">
-                <li className="flex items-center gap-2 text-slate-300">
-                  <Check className="w-5 h-5 text-accent-500" />
-                  <span>定期巡检</span>
-                </li>
-                <li className="flex items-center gap-2 text-slate-300">
-                  <Check className="w-5 h-5 text-accent-500" />
-                  <span>固件升级</span>
-                </li>
-                <li className="flex items-center gap-2 text-slate-300">
-                  <Check className="w-5 h-5 text-accent-500" />
-                  <span>故障修复</span>
-                </li>
-              </ul>
-            </div>
+              ))}
+            </ol>
           </div>
         </div>
       </section>
@@ -283,13 +223,13 @@ export default function Products() {
               联系我们的专业团队，获取免费的技术咨询和方案评估
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-8 py-4 bg-white text-slate-900 font-semibold rounded-lg hover:bg-slate-100 transition-all flex items-center justify-center gap-2">
+              <button type="button" onClick={() => contact.open("wechat")} className="px-8 py-4 bg-white text-slate-900 font-semibold rounded-lg hover:bg-slate-100 transition-all flex items-center justify-center gap-2">
                 立即咨询
                 <ArrowRight className="w-5 h-5" />
               </button>
-              <Link to="/contact" className="px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-lg hover:bg-white/10 transition-all">
+              <button type="button" onClick={() => contact.open("wechat")} className="px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-lg hover:bg-white/10 transition-all">
                 联系方式
-              </Link>
+              </button>
             </div>
           </div>
         </div>
