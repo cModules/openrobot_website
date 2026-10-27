@@ -5,6 +5,7 @@ import AdminLayout from "@/pages/AdminLayout";
 import AdminDashboard from "@/pages/AdminDashboard";
 import AdminProducts from "@/pages/AdminProducts";
 import AdminDownloads from "@/pages/AdminDownloads";
+import AdminCases from "@/pages/AdminCases";
 import AdminDocs from "@/pages/AdminDocs";
 import AdminAssets from "@/pages/AdminAssets";
 import AdminSettings from "@/pages/AdminSettings";
@@ -32,6 +33,7 @@ export default function App() {
             <Route index element={<AdminDashboard />} />
             <Route path="products" element={<AdminProducts />} />
             <Route path="downloads" element={<AdminDownloads />} />
+            <Route path="cases" element={<AdminCases />} />
             <Route path="docs" element={<AdminDocs />} />
             <Route path="assets" element={<AdminAssets />} />
             <Route path="settings" element={<AdminSettings />} />

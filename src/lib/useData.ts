@@ -10,11 +10,13 @@ import {
   products,
   downloads,
   documentation,
+  cases,
 } from './dataManager';
 import type {
   ProductCategory,
   DownloadItem,
   Documentation,
+  CaseItem,
 } from './dataManager';
 
 export function useProducts(): { products: ProductCategory[] } {
@@ -27,4 +29,8 @@ export function useDownloads(): { downloads: DownloadItem[] } {
 
 export function useDocumentation(): { documentation: Documentation[] } {
   return { documentation };
+}
+
+export function useCases(): { cases: CaseItem[] } {
+  return { cases };
 }

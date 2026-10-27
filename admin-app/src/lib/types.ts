@@ -62,11 +62,27 @@ export interface Documentation {
   link: string;
 }
 
+/** 客户案例，与主站 src/lib/dataManager.ts 的 CaseItem 保持一致 */
+export interface CaseItem {
+  id: string;
+  title: string;
+  client: string;
+  industry: string;
+  summary: string;
+  details: string[];
+  image: string;
+  coverPath?: string;
+  results: string[];
+  tags: string[];
+  date: string;
+}
+
 export interface SiteContent {
   site: SiteInfo;
   products: ProductCategory[];
   downloads: DownloadItem[];
   documentation: Documentation[];
+  cases?: CaseItem[];
 }
 
 /**

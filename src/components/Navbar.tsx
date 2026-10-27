@@ -2,34 +2,14 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { siteInfo } from "@/lib/dataManager";
-import { useContact } from "@/lib/contact";
 
 const navLinks = [
   { path: "/", label: "首页" },
   { path: "/products", label: "产品" },
-  { path: "/download", label: "下载" },
-  { path: "/feedback", label: "反馈" },
+  { path: "/resources", label: "资源" },
+  { path: "/cases", label: "案例" },
+  { path: "/contact", label: "联系我们" },
 ];
-
-const linkClass =
-  "text-sm font-medium transition-colors hover:text-accent-400 text-slate-300";
-
-function ContactEntry({ onClick }: { onClick?: () => void }) {
-  const { open } = useContact();
-
-  return (
-    <button
-      type="button"
-      onClick={() => {
-        open("wechat");
-        onClick?.();
-      }}
-      className={linkClass}
-    >
-      联系
-    </button>
-  );
-}
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -64,7 +44,6 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <ContactEntry />
           </div>
 
           <button
@@ -92,7 +71,6 @@ export default function Navbar() {
                   {link.label}
                 </Link>
               ))}
-              <ContactEntry onClick={() => setIsOpen(false)} />
             </div>
           </div>
         )}

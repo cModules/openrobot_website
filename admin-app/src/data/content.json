@@ -2,7 +2,7 @@
   "site": {
     "name": "OpenRobot",
     "logoText": "OpenRobot",
-    "email": "jay.cn@outlook.com",
+    "email": "atlas@openrobot.work",
     "github": "https://github.com/cModules",
     "wechatId": "",
     "wechatQr": "/wechat-qrcode.jpg",
@@ -153,6 +153,59 @@
       "description": "支持的机器人型号和规格",
       "icon": "Terminal",
       "link": "https://github.com/cModules"
+    }
+  ],
+  "cases": [
+    {
+      "id": "case-1",
+      "title": "协作机器人离线编程工作站",
+      "client": "某汽车零部件制造商",
+      "industry": "汽车制造",
+      "summary": "用 RoboWorld 替代示教编程，把新产品的产线调试从三天压缩到半天。",
+      "details": [
+        "客户产线需要频繁切换产品型号，原本依赖工程师现场示教，每次换型要停机三天。",
+        "我们用 RoboWorld 导入工件三维模型，离线完成路径规划与碰撞检测，生成的代码直接下发到现场机器人。",
+        "换型时只需替换模型重新计算，不再占用产线时间。"
+      ],
+      "image": "/api/asset/products/roboworld/assets/grasping-workstation.png",
+      "coverPath": "",
+      "results": ["换型停机时间减少 85%", "路径规划零碰撞事故", "新员工两天即可上手"],
+      "tags": ["RoboWorld", "离线编程"],
+      "date": "2026-09-12"
+    },
+    {
+      "id": "case-2",
+      "title": "视觉引导抓取系统",
+      "client": "某 3C 电子代工厂",
+      "industry": "3C 电子",
+      "summary": "视觉定位 + 轨迹回放，实现散乱来料的自动上下料。",
+      "details": [
+        "来料摆放无序，传统固定轨迹无法适配。我们部署视觉模块识别工件位姿，实时生成抓取轨迹。",
+        "配合 RoboWorld 的轨迹回放功能，工程师可以直接复用历史成功轨迹，减少反复调试。",
+        "系统上线后单班次减少两名操作工。"
+      ],
+      "image": "/api/asset/products/roboworld/assets/grasping-playback.png",
+      "coverPath": "",
+      "results": ["单班次减员 2 人", "抓取成功率 99.2%", "兼容 6 种工件"],
+      "tags": ["RoboWorld", "视觉抓取"],
+      "date": "2026-08-05"
+    },
+    {
+      "id": "case-3",
+      "title": "开源机械臂教学套件部署",
+      "client": "某高校机器人实验室",
+      "industry": "教育科研",
+      "summary": "SO-ARM-101 套件用于课程实验，学生可自行搭建并编程控制。",
+      "details": [
+        "实验室需要一套低成本、可复现的机械臂平台用于本科教学。",
+        "我们提供 SO-ARM-101 套件与配套示例代码，学生从组装到完成第一个抓取任务约需四学时。",
+        "所有资料开源，教师可自由改写实验内容。"
+      ],
+      "image": "/api/asset/products/so-arm101/assets/product.jpg",
+      "coverPath": "",
+      "results": ["48 套部署完成", "课程实验开出率 100%", "学生项目获省级奖项"],
+      "tags": ["SO-ARM-101", "教育"],
+      "date": "2026-07-20"
     }
   ]
 }

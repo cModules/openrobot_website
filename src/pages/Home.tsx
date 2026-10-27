@@ -35,7 +35,7 @@ const offerings = [
     description: "机器人仿真编程软件，免费使用，支持多品牌后处理",
     icon: Code,
     price: "免费",
-    to: "/download",
+    to: "/resources",
   },
   {
     name: "SO101 开源机器人套件",
@@ -79,7 +79,7 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                to="/download"
+                to="/resources"
                 className="px-8 py-4 bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-500 hover:to-accent-500 text-white font-semibold rounded-lg transition-all hover:shadow-lg hover:shadow-primary-500/25 flex items-center justify-center gap-2"
               >
                 开始下载
@@ -265,7 +265,7 @@ export default function Home() {
               下载 roboWorld，开启你的机器人仿真编程之旅
             </p>
             <Link
-              to="/download"
+              to="/resources"
               className="inline-flex items-center gap-2 px-8 py-4 bg-white text-slate-900 font-semibold rounded-lg hover:bg-slate-100 transition-all"
             >
               立即下载

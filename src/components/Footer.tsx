@@ -60,25 +60,17 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-4">产品与服务</h4>
             <ul className="space-y-2 text-sm text-slate-400">
-              <li><Link to="/download" className="hover:text-accent-400 transition-colors">roboWorld</Link></li>
+              <li><Link to="/products" className="hover:text-accent-400 transition-colors">roboWorld</Link></li>
               <li><Link to="/products" className="hover:text-accent-400 transition-colors">SO101 套件</Link></li>
               <li><Link to="/products" className="hover:text-accent-400 transition-colors">方案顾问</Link></li>
-              <li><Link to="/download" className="hover:text-accent-400 transition-colors">下载中心</Link></li>
+              <li><Link to="/cases" className="hover:text-accent-400 transition-colors">客户案例</Link></li>
             </ul>
           </div>
           <div>
-            <h4 className="text-white font-semibold mb-4">资源</h4>
+            <h4 className="text-white font-semibold mb-4">资源与支持</h4>
             <ul className="space-y-2 text-sm text-slate-400">
-              <li><Link to="/feedback" className="hover:text-accent-400 transition-colors">意见反馈</Link></li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => open("wechat")}
-                  className="hover:text-accent-400 transition-colors"
-                >
-                  联系我们
-                </button>
-              </li>
+              <li><Link to="/resources" className="hover:text-accent-400 transition-colors">下载中心</Link></li>
+              <li><Link to="/contact" className="hover:text-accent-400 transition-colors">联系我们</Link></li>
             </ul>
           </div>
         </div>

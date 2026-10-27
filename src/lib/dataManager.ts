@@ -79,12 +79,43 @@ export interface Documentation {
   link: string;
 }
 
+/**
+ * 客户案例。
+ *
+ * image/coverPath 二选一：
+ *   image     —— 资源库里的图片路径，会经 /api/asset 读取
+ *   coverPath —— 一个完整 HTML 案例页（和产品介绍页同理），点进详情页用 iframe 加载
+ */
+export interface CaseItem {
+  id: string;
+  /** 案例标题 */
+  title: string;
+  /** 客户或项目方名称 */
+  client: string;
+  /** 所属行业，用于筛选 */
+  industry: string;
+  /** 一句话摘要，卡片上展示 */
+  summary: string;
+  /** 详细正文，支持多段，每段一个字符串 */
+  details: string[];
+  /** 卡片配图，填资源库路径（不含 /api/asset 前缀也可） */
+  image: string;
+  /** 案例详情页路径（HTML），填了才会出现「查看详情」 */
+  coverPath?: string;
+  /** 达成的效果，如「效率提升 40%」 */
+  results: string[];
+  /** 使用的产品，如 RoboWorld、SO-ARM-101 */
+  tags: string[];
+  date: string;
+}
+
 /** 内容文件的顶层结构 */
 export interface SiteContent {
   site: SiteInfo;
   products: ProductCategory[];
   downloads: DownloadItem[];
   documentation: Documentation[];
+  cases: CaseItem[];
 }
 
 export const contentData = content as SiteContent;
@@ -93,6 +124,7 @@ export const siteInfo: SiteInfo = contentData.site;
 export const products: ProductCategory[] = contentData.products;
 export const downloads: DownloadItem[] = contentData.downloads;
 export const documentation: Documentation[] = contentData.documentation;
+export const cases: CaseItem[] = contentData.cases ?? [];
 
 /** 生成唯一 ID */
 export function generateId(prefix: string = 'id'): string {
