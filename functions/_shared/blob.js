@@ -34,6 +34,38 @@ export function checkAdmin(request, env) {
   return null;
 }
 
+/**
+ * CORS 响应头。
+ *
+ * 后台部署在独立域名（如 admin.openrobot.work），跨站调用本接口时
+ * 浏览器会先发 OPTIONS 预检，且要求响应带 Access-Control-Allow-Origin。
+ * 缺少这些头时，后台的资源库页面在浏览器里会直接失败。
+ *
+ * 想限定来源可配环境变量 ALLOWED_ORIGIN（逗号分隔多个），
+ * 例如：https://admin.openrobot.work,http://localhost:5174
+ * 未配置时回显请求来源（即允许任意源）。
+ * 注意：真正的访问控制靠 x-admin-token，CORS 本身不是安全边界。
+ */
+export function corsHeaders(request, env) {
+  const origin = request.headers.get("origin") || "";
+  const allowed = (env?.ALLOWED_ORIGIN || "")
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
+
+  let allowOrigin = origin;
+  if (allowed.length > 0) {
+    allowOrigin = allowed.includes(origin) ? origin : allowed[0];
+  }
+
+  return {
+    "Access-Control-Allow-Origin": allowOrigin || "*",
+    "Access-Control-Allow-Methods": "GET, POST, DELETE, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type, x-admin-token",
+    "Access-Control-Max-Age": "86400",
+  };
+}
+
 export function isValidKey(key) {
   return (
     typeof key === "string" &&

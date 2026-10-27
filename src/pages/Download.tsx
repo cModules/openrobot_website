@@ -60,7 +60,7 @@ export default function DownloadPage() {
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h1 className="text-5xl font-display font-bold text-white mb-4">
-              下载中心
+              资源中心
             </h1>
             <p className="text-xl text-slate-400 max-w-2xl mx-auto">
               获取最新的 roboWorld 软件、开发工具和文档资源

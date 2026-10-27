@@ -69,7 +69,7 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-4">资源与支持</h4>
             <ul className="space-y-2 text-sm text-slate-400">
-              <li><Link to="/resources" className="hover:text-accent-400 transition-colors">下载中心</Link></li>
+              <li><Link to="/resources" className="hover:text-accent-400 transition-colors">资源中心</Link></li>
               <li><Link to="/contact" className="hover:text-accent-400 transition-colors">联系我们</Link></li>
             </ul>
           </div>
